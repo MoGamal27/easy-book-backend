@@ -1,73 +1,185 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Center Solution Book
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Table of Contents
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Folder Structure](#folder-structure)
+5. [API Documentation](#api-documentation)
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Overview
 
-## Installation
+The center solution system is designed to manage various aspects of a service center with multiple branches. It includes features for online registration, employee management, service offerings, reservations, and user management. The system also incorporates privilege levels to ensure secure access control.
 
-```bash
-$ npm install
+## Features
+
+The project is organized into the following main directories:
+
+- **Center Registration:** Allows for the registration and management of different centers within the system.
+- **Branches** 
+- **Employee Management: Handles employee roles and assignments.
+- **Customer Capacity: Manages the number of customers that can be accommodated per day at each branch.
+- **Appointment Scheduling: Allows customers to book appointments at specific branches.
+- **Branch Address Management: Stores and manages the addresses of all branches.
+
+- **Employee Roles:** 
+- **Accountant: Manages financial transactions and records.
+- **Technical Director: Oversees technical operations and services.
+- **Artist: Provides artistic services.
+- **Offline Receptionist: Handles in-person customer interactions and appointments.
+- **Admin: Manages overall system administration.
+- **Online Coordinator: Manages online customer interactions and coordination.
+
+- **Service Management:** 
+- **Service Details: Includes the service name, price, coordinator, rate, duration, and display status.
+
+- **Reservation** 
+- **Branch Selection: Customers can choose a branch for their reservation.
+- **Reservation Status: Tracks the status of reservations (e.g., pending, canceled, completed).
+- **Service Notes: Allows for notes related to the service being reserved.
+- **Receipt Photo: Upload and manage photos of payment receipts.
+- **Advance Payment: Tracks the amount paid in advance by the customer.
+- **Customer Information: Stores customer details such as name and contact information.
+- **Total Price: Calculates and stores the total price of the reservation.
+- **Reservation Number: Generates a unique number for each reservation.
+- **Login Time & Date: Tracks the time and date of the reservation.
+- **Services: Lists the services included in the reservation.
+- **Employee Assignment: Tracks which employee is responsible for the reservation.
+
+- **Status Reservation** 
+- **Pending: Reservation is awaiting confirmation.
+- **Canceled: Reservation has been canceled.
+- **Completed: Service has been completed.
+- **Done or Not: Tracks whether the service was successfully completed or not.
+
+## Folder Structure
 ```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+{
+src/
+│
+├── auth/
+│   ├── auth.controller.ts
+│   ├── auth.module.ts
+│   ├── auth.service.ts
+│   ├── dto/
+│   │   ├── login.dto.ts
+│   ├── entities/
+│   │   └── auth.entity.ts
+│   
+│     
+│
+├── branch/
+│   ├── branch.controller.ts
+│   ├── branch.module.ts
+│   ├── branch.service.ts
+│   ├── dto/
+│   │   ├── create-branch.dto.ts
+│   │   ├── update-branch.dto.ts
+│   ├── entities/
+│   │   └── branch.entity.ts
+│   └── single-branch.controller.ts
+│
+├── employee/
+│   ├── employee.controller.ts
+│   ├── employee.module.ts
+│   ├── employee.service.ts
+│   ├── dto/
+│   │   ├── create-employee.dto.ts
+│   │   ├── update-employee.dto.ts
+│   ├── entities/
+│   │   └── employee.entity.ts
+│   ├── employee-types.controller.ts
+│   └── position-titles.controller.ts
+│
+├── client/
+│   ├── client.controller.ts
+│   ├── client.module.ts
+│   ├── client.service.ts
+│   ├── dto/
+│   │   ├── create-client.dto.ts
+│   │   ├── update-client.dto.ts
+│   ├── entities/
+│   │   └── client.entity.ts
+│
+├── service/
+│   ├── service.controller.ts
+│   ├── service.module.ts
+│   ├── service.service.ts
+│   ├── dto/
+│   │   ├── create-service.dto.ts
+│   │   ├── update-service.dto.ts
+│   ├── entities/
+│   │   └── service.entity.ts
+│
+├── reservation/
+│   ├── reservation.controller.ts
+│   ├── reservation.module.ts
+│   ├── reservation.service.ts
+│   ├── dto/
+│   │   ├── create-reservation.dto.ts
+│   │   ├── update-reservation.dto.ts
+│   ├── entities/
+│   │   └── reservation.entity.ts
+│   ├── reservation-client.controller.ts
+│   └── reservation-receipt.controller.ts
+│
+├── artist/
+│   ├── artist.controller.ts
+│   ├── artist.module.ts
+│   ├── artist.service.ts
+│   ├── dto/
+│   │   ├── create-artist.dto.ts
+│   │   ├── update-artist.dto.ts
+│   ├── entities/
+│   │   └── artist.entity.ts
+│
+├── timeframe/
+│   ├── timeframe.controller.ts
+│   ├── timeframe.module.ts
+│   ├── timeframe.service.ts
+│   ├── dto/
+│   │   ├── create-timeframe.dto.ts
+│   │   ├── update-timeframe.dto.ts
+│   ├── entities/
+│   │   └── timeframe.entity.ts
+│
+├── dashboard/
+│   ├── financial-dashboard.controller.ts
+│   ├── admin-dashboard.controller.ts
+│   ├── dashboard.module.ts
+│   ├── dashboard.service.ts
+│   ├── dto/
+│   │   ├── financial-dashboard.dto.ts
+│   │   ├── admin-dashboard.dto.ts
+│   ├── entities/
+│   │   └── dashboard.entity.ts
+│
+├── common/
+│   ├── decorators/
+│   ├── filters/
+│   ├── guards/
+│   ├── interceptors/
+│   ├── pipes/
+|   ├── swagger 
+│   └── utils/
+│       ├── appError.ts
+│       └── helperFunctions.ts
+│
+├── app.module.ts
+├── main.ts
+├── config/
+│   ├── config.module.ts
+│   ├── config.service.ts
+│   └── configuration.ts
+├── database/
+│   ├── database.module.ts
+│   ├── database.providers.ts
+│   └── migrations/
+│       └── <timestamp>-migration-name.ts
+└── shared/
+    ├── dto/
+    ├── entities/
+    └── interfaces/
+}
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
