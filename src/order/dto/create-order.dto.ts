@@ -5,9 +5,6 @@ export class CreateOrderDto {
   @IsNumber()
   clientId: number;
 
-  @IsNotEmpty()
-  @IsString()
-  bookingBy: string;
 
   @IsNotEmpty()
   @IsNumber()
@@ -15,8 +12,7 @@ export class CreateOrderDto {
   amountService: number;
 
   @IsNotEmpty()
-  @IsDate()
-  date: Date;
+  date: string;
 
   @IsNotEmpty()
   @IsString()

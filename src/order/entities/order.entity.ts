@@ -14,8 +14,6 @@ export class Order {
   @Column()
   clientId: number;
 
-  @Column()
-  bookingBy: string;
 
   @Column('decimal', { precision: 10, scale: 2 })
   amountService: number;
