@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BranchModule } from './branch/branch.module';
 import { EmployeeModule } from './employee/employee.module';
+import { JobTitleModule } from './employee/job-title/jobTitle.module';
 import { PaymentModule } from './payment/payment.module';
 import { ClientModule } from './client/client.module';
+import { OrderModule } from './order/order.module';
 import { TimeFrameModule } from './timeframe/timeframe.module';
 import { AuthModule } from './auth/auth.module';
 @Module({
@@ -20,8 +22,10 @@ import { AuthModule } from './auth/auth.module';
     }),
     BranchModule,
     EmployeeModule,
+    JobTitleModule,
     PaymentModule,
     ClientModule,
+    OrderModule,
     TimeFrameModule,
     AuthModule
   ],
