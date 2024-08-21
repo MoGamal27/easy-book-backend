@@ -17,6 +17,12 @@ export class BranchController {
     return this.branchService.findAll();
   }
 
+  // search by name 
+  @Get()
+  findByName(@Param('name') name: string) {
+    return this.branchService.findByName(name);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.branchService.findOne(+id);
