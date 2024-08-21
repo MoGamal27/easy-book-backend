@@ -9,7 +9,13 @@ export class CreateClientDto {
   @IsPhoneNumber()
   phone: string;
 
-  @IsOptional()
-  @IsDate()
-  joinDate?: Date;
+  @IsNotEmpty()
+  totalOrder: number;
+
+  @IsNotEmpty()
+  joinDate: string;
+
+  
+  @IsNotEmpty()
+  lastOrder: string;
 }

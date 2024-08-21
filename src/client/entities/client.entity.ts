@@ -16,10 +16,10 @@ export class Client {
   totalOrder: number;
 
   @Column()
-  joinDate: Date;
+  joinDate: string;
 
-  @Column({ nullable: true })
-  lastOrder: Date;
+  @Column()
+  lastOrder: string;
 
   @OneToMany(() => Order, order => order.client)
   orders: Order[];
