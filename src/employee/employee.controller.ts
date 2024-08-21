@@ -31,4 +31,14 @@ export class EmployeeController {
   remove(@Param('id') id: string) {
     return this.employeeService.remove(+id);
   }
+
+  @Get('branch/:id')
+  findByBranchId(@Param('id') id: string) {
+    return this.employeeService.findByBranchId(+id);
+  }
+
+  @Get('job-title/:id')
+  findByJobTitleId(@Param('id') id: string) {
+    return this.employeeService.findByJobTitleId(+id);
+  }
 }

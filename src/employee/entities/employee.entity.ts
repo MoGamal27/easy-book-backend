@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Branch } from '../../branch/entities/branch.entity';
+import { jobTitle } from '../job-title/jobTitle.entity';
 
 @Entity()
 export class Employee {
@@ -16,8 +17,12 @@ export class Employee {
   @Column('float')
   numberOfWorkHours: number;
 
+  @ManyToOne(() => jobTitle)
+  @JoinColumn({ name: 'jobTitleId' })
+  jobTitle: jobTitle;
+
   @Column()
-  jobTitle: string;
+  jobTitleId: number;
 
   @Column()
   name: string;

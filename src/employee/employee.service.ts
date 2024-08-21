@@ -41,4 +41,14 @@ export class EmployeeService {
       throw new NotFoundException(`Employee with ID ${id} not found`);
     }
   }
+
+  // get employee by branch id
+  async findByBranchId(branchId: number): Promise<Employee[]> {
+    return await this.employeeRepository.find({ where: { branchId } });
+  }
+
+  // get employee by job title id
+  async findByJobTitleId(jobTitleId: number): Promise<Employee[]> {
+    return await this.employeeRepository.find({ where: { jobTitleId } });
+  }
 }

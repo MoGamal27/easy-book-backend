@@ -11,9 +11,9 @@ export class CreateEmployeeDto {
   @IsPositive()
   numberOfWorkHours: number;
 
-  @IsNotEmpty()
-  @IsString()
-  jobTitle: string;
+ @IsNotEmpty()
+  @IsNumber()
+  jobTitleId: number;
 
   @IsNotEmpty()
   @IsString()
