@@ -8,6 +8,8 @@ import { ClientModule } from './client/client.module';
 import { OrderModule } from './order/order.module';
 import { TimeFrameModule } from './timeframe/timeframe.module';
 import { AuthModule } from './auth/auth.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -20,6 +22,10 @@ import { AuthModule } from './auth/auth.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true, // Set to false in production
     }),
+      ConfigModule.forRoot({
+        isGlobal: true,  
+      }),
+
     BranchModule,
     EmployeeModule,
     JobTitleModule,
@@ -27,7 +33,8 @@ import { AuthModule } from './auth/auth.module';
     ClientModule,
     OrderModule,
     TimeFrameModule,
-    AuthModule
+    AuthModule,
+    CloudinaryModule
   ],
 })
 export class AppModule {}

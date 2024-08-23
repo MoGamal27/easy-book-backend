@@ -1,27 +1,28 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { jobTitle } from "./jobTitle.entity";
+import { JobTitle } from "./jobTitle.entity";
 
 @Injectable()
 export class JobTitleService {
     constructor(
-        private readonly jobTitleRepository: Repository<jobTitle>, 
+        @InjectRepository(JobTitle)
+        private readonly jobTitleRepository: Repository<JobTitle>, 
     ){}
 
-    async findAll(): Promise<jobTitle[]> {
+    async findAll(): Promise<JobTitle[]> {
         return await this.jobTitleRepository.find();
     }
 
-    async findOne(id: number): Promise<jobTitle> {
+    async findOne(id: number): Promise<JobTitle> {
         return await this.jobTitleRepository.findOne({ where: { id } });
     }
 
-    async create(jobTitle: jobTitle): Promise<jobTitle> {
+    async create(jobTitle: JobTitle): Promise<JobTitle> {
         return await this.jobTitleRepository.save(jobTitle);
     }
 
-    async update(id: number, jobTitle: jobTitle): Promise<jobTitle> {
+    async update(id: number, jobTitle: JobTitle): Promise<JobTitle> {
         const updateJobTitle = await this.jobTitleRepository.preload({ id, ...jobTitle });
         return await this.jobTitleRepository.save(updateJobTitle);
     }

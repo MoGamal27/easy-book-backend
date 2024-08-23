@@ -4,12 +4,14 @@ import { Repository } from 'typeorm';
 import { Employee } from './entities/employee.entity';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { JobTitleService } from './job-title/jobTitle.service';
 
 @Injectable()
 export class EmployeeService {
   constructor(
     @InjectRepository(Employee)
     private employeeRepository: Repository<Employee>,
+    private jobTitleService: JobTitleService
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {

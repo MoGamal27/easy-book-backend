@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
-export class jobTitle {
+export class JobTitle {
     
     @PrimaryGeneratedColumn()
     id: number;

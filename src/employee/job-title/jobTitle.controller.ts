@@ -1,28 +1,28 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { JobTitleService } from './jobTitle.service';
-import { jobTitle } from './jobTitle.entity';
+import { JobTitle } from './jobTitle.entity';
 
 @Controller('job-title')
 export class JobTitleController {
     constructor(private readonly jobTitleService: JobTitleService) {}
 
     @Get()
-    findAll(): Promise<jobTitle[]> {
+    findAll(): Promise<JobTitle[]> {
         return this.jobTitleService.findAll();
     }
 
     @Post()
-    create(@Body() jobTitle: jobTitle): Promise<jobTitle> {
+    create(@Body() jobTitle: JobTitle): Promise<JobTitle> {
         return this.jobTitleService.create(jobTitle);
     }
 
     @Get(':id')
-    findOne(@Param('id') id: number): Promise<jobTitle> {
+    findOne(@Param('id') id: number): Promise<JobTitle> {
         return this.jobTitleService.findOne(id);
     }
 
     @Patch(':id')
-    update(@Param('id') id: number, @Body() jobTitle: jobTitle): Promise<jobTitle> {
+    update(@Param('id') id: number, @Body() jobTitle: JobTitle): Promise<JobTitle> {
         return this.jobTitleService.update(id, jobTitle);
     }
 
