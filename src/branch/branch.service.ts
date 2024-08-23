@@ -5,17 +5,25 @@ import { Repository } from 'typeorm';
 import { Branch } from './entities/branch.entity';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 @Injectable()
 export class BranchService {
   constructor(
     @InjectRepository(Branch)
     private branchRepository: Repository<Branch>,
+    private cloudinaryService: CloudinaryService,
   ) {}
 
-  async create(createBranchDto: CreateBranchDto): Promise<Branch> {
+  async create(createBranchDto: CreateBranchDto, file: Express.Multer.File): Promise<Branch> {
     try {
-      const branch = this.branchRepository.create(createBranchDto);
+      const uploadResult = await this.cloudinaryService.uploadImage(file);
+
+      const branch = this.branchRepository.create({
+        ...createBranchDto,
+       imageUrl: uploadResult.secure_url,      
+    });
+
       return await this.branchRepository.save(branch);
 
     }catch(error){

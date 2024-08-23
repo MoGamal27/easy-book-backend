@@ -1,15 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { BranchService } from './branch.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Branch } from './entities/branch.entity';
 
 @Controller('branches')
 export class BranchController {
   constructor(private readonly branchService: BranchService) {}
 
   @Post()
-  create(@Body() createBranchDto: CreateBranchDto) {
-    return this.branchService.create(createBranchDto);
+  @UseInterceptors(FileInterceptor('image'))
+  async createBranch(
+    @Body() createBranchDto: CreateBranchDto,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<Branch> {
+    return this.branchService.create(createBranchDto, file);
   }
 
   @Get()

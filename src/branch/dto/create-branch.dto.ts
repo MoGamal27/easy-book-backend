@@ -8,8 +8,4 @@ export class CreateBranchDto {
   @IsNotEmpty()
   @IsUrl()
   locationLink: string;
-
-  @IsNotEmpty()
-  @IsUrl()
-  imageUrl: string;
 }
