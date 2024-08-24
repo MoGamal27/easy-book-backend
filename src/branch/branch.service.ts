@@ -6,6 +6,7 @@ import { Branch } from './entities/branch.entity';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { SearchService } from 'src/elasticsearch/elasticsearch.service';
 
 @Injectable()
 export class BranchService {
@@ -13,6 +14,7 @@ export class BranchService {
     @InjectRepository(Branch)
     private branchRepository: Repository<Branch>,
     private cloudinaryService: CloudinaryService,
+    private searchService: SearchService
   ) {}
 
   async create(createBranchDto: CreateBranchDto, file: Express.Multer.File): Promise<Branch> {
@@ -23,7 +25,8 @@ export class BranchService {
         ...createBranchDto,
        imageUrl: uploadResult.secure_url,      
     });
-
+      
+      await this.searchService.indexBranch(branch);
       return await this.branchRepository.save(branch);
 
     }catch(error){
@@ -60,4 +63,16 @@ export class BranchService {
       throw new NotFoundException(`Branch with ID ${id} not found`);
     }
   }
+
+  async search(query: any): Promise<any> {
+    const body = {
+      query: {
+        multi_match: {
+          query: query.query,
+          fields: ['name', 'locationLink'],
+        },
+      },
+    };
+    return await this.searchService.search('branches', body);
+}
 }

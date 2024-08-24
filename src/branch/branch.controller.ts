@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Query } from '@nestjs/common';
 import { BranchService } from './branch.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Branch } from './entities/branch.entity';
+
 
 @Controller('branches')
 export class BranchController {
@@ -42,5 +43,10 @@ export class BranchController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.branchService.remove(+id);
+  }
+
+  @Get('search')
+  async search(@Query('query') query:string){
+    return this.branchService.search(query);
   }
 }

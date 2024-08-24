@@ -10,6 +10,7 @@ import { TimeFrameModule } from './timeframe/timeframe.module';
 import { AuthModule } from './auth/auth.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ConfigModule } from '@nestjs/config';
+import { SearchModule } from './elasticsearch/elasticsearch.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -34,7 +35,8 @@ import { ConfigModule } from '@nestjs/config';
     OrderModule,
     TimeFrameModule,
     AuthModule,
-    CloudinaryModule
+    CloudinaryModule,
+    SearchModule
   ],
 })
 export class AppModule {}
